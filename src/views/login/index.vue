@@ -8,22 +8,22 @@
          <img src="../../assets/img/logo_index.png" alt="">
        </div>
        <!-- 表单 绑定model属性  绑定rules属性(表单验证规则) ref 给el-form一个属性-->
-       <el-form style="margin-top:20px">
+       <el-form :model="loginForm" :rules="loginRules" style="margin-top:20px">
          <!-- 表单容器 设置prop属性 prop表示要校验的字段名-->
-         <el-form-item >
+         <el-form-item prop="tel">
            <!-- 表单域  v-model双向绑定 -->
-           <el-input placeholder="请输入手机号"></el-input>
+           <el-input v-model="loginForm.tel" placeholder="请输入手机号"></el-input>
          </el-form-item>
          <!-- 验证码 -->
-         <el-form-item >
-           <el-input style="width:60%" placeholder="请输入验证码"></el-input>
+         <el-form-item prop="code">
+           <el-input v-model="loginForm.code" style="width:60%" placeholder="请输入验证码"></el-input>
            <!-- 放置一个按钮 -->
            <el-button style="float:right" >发送验证码</el-button>
          </el-form-item>
          <!-- 表单域 -->
-         <el-form-item >
+         <el-form-item prop="checked">
            <!-- 是否同意被人家坑 -->
-           <el-checkbox >我已阅读同意用户协议和隐私条款</el-checkbox>
+           <el-checkbox v-model="loginForm.checked" >我已阅读同意用户协议和隐私条款</el-checkbox>
          </el-form-item>
          <!-- 按钮 -->
          <el-form-item>
@@ -36,6 +36,16 @@
 
 <script>
 export default {
+  data () {
+    return {
+      loginForm: {
+        tel: '',
+        code: '',
+        checked: false
+      },
+      loginRules: {}
+    }
+  }
 }
 </script>
 
