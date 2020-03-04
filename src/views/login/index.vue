@@ -10,9 +10,9 @@
        <!-- 表单 绑定model属性  绑定rules属性(表单验证规则) ref 给el-form一个属性-->
        <el-form ref="loginForm" :model="loginForm" :rules="loginRules" style="margin-top:20px">
          <!-- 表单容器 设置prop属性 prop表示要校验的字段名-->
-         <el-form-item prop="tel">
+         <el-form-item prop="mobile">
            <!-- 表单域  v-model双向绑定 -->
-           <el-input v-model="loginForm.tel" placeholder="请输入手机号"></el-input>
+           <el-input v-model="loginForm.mobile" placeholder="请输入手机号"></el-input>
          </el-form-item>
          <!-- 验证码 -->
          <el-form-item prop="code">
@@ -41,17 +41,17 @@ export default {
     return {
       // 校验字段名
       loginForm: {
-        tel: '',
+        mobile: '',
         code: '',
         checked: false
       },
       // 配置校验规则
       loginRules: {
-        tel: [{ required: true, message: '您的手机号不能为空' }, // 手机号不能为空
+        mobile: [{ required: true, message: '您的手机号不能为空' }, // 手机号不能为空
           { pattern: /^1[3-9]\d{9}$/, message: '手机格式不正确' }// 利用正则表达式判断手机号格式
         ],
         code: [{ required: true, message: '验证码不能为空' }, // 验证码不能为空
-          { pattern: /^\d{4}$/, message: '验证码错误' }// 验证码为四个数字
+          { pattern: /^\d{6}$/, message: '验证码错误' }// 验证码为六个数字
         ],
         checked: [{
           validator: function (rule, value, callback) {
@@ -65,7 +65,20 @@ export default {
   methods: {
     login () {
       this.$refs.loginForm.validate().then(() => {
-        alert('123')
+        // 如果成功通过 校验就会到达 then
+        // 通过校验之后 应该做什么事 -> 应该调用登录接口 看看手机号是否正常
+        //   this.$axios.get/post/delete/put
+        this.$axios({
+          url: '/authorizations', // 请求地址
+          data: this.loginForm,
+          // data: { ...this.loginForm, checked: null }, // body请求体参数
+          method: 'post'
+        }).then(result => {
+          // 成功 之后打印结果
+          window.localStorage.setItem('user-token', result.data.data.token)
+        }).catch(() => {
+
+        })
       })
     }
   }
