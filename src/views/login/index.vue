@@ -22,7 +22,7 @@
          </el-form-item>
          <!-- 表单域 -->
          <el-form-item prop="checked">
-           <!-- 是否同意被人家坑 -->
+           <!-- 是否同意协议内容 -->
            <el-checkbox v-model="loginForm.checked" >我已阅读同意用户协议和隐私条款</el-checkbox>
          </el-form-item>
          <!-- 按钮 -->
@@ -37,13 +37,29 @@
 <script>
 export default {
   data () {
+    // data是一个对象，而单组件的数据不能传出去，因此需要return出数据
     return {
+      // 校验字段名
       loginForm: {
         tel: '',
         code: '',
         checked: false
       },
-      loginRules: {}
+      // 配置校验规则
+      loginRules: {
+        tel: [{ required: true, message: '您的手机号不能为空' }, // 手机号不能为空
+          { pattern: /^1[3-9]\d{9}$/, message: '手机格式不正确' }// 利用正则表达式判断手机号格式
+        ],
+        code: [{ required: true, message: '验证码不能为空' }, // 验证码不能为空
+          { pattern: /^\d{4}$/, message: '验证码错误' }// 验证码为四个数字
+        ],
+        checked: [{
+          validator: function (rule, value, callback) {
+            value ? callback() : callback(new Error('请先同意我们的协议'))
+          }
+        }]
+
+      }
     }
   }
 }
