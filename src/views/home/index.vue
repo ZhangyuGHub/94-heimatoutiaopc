@@ -3,7 +3,7 @@
     <layout-aside></layout-aside>
   <el-container>
     <el-header>
-      <h2>这是顶栏</h2>
+      <layout-head></layout-head>
     </el-header>
     <el-main>
       <h2>这是主要区域</h2>
@@ -14,9 +14,11 @@
 
 <script>
 import LayoutAside from '@/components/home/layout-aside.vue'
+import LayoutHead from '@/components/home/layout-head.vue'
 export default {
   components: {
-    'layout-aside': LayoutAside
+    'layout-aside': LayoutAside,
+    'layout-head': LayoutHead
   }
 }
 </script>

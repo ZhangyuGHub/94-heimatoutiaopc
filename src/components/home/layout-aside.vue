@@ -8,8 +8,11 @@
             <i class="el-icon-s-home"></i>
             <span>首页</span>
         </el-menu-item>
+        <!-- 二级标签使用submenu -->
         <el-submenu>
+            <!-- 具名插槽 -->
            <template slot="title">
+               <!-- element自带的图标 -->
                 <i class="el-icon-s-grid"></i>
             <span>内容管理</span>
            </template>
