@@ -5,8 +5,8 @@
     <el-header>
       <layout-head></layout-head>
     </el-header>
-    <el-main>
-      <h2>这是主要区域</h2>
+    <el-main style="padding:0">
+      <router-view></router-view>
     </el-main>
   </el-container>
   </el-container>
@@ -24,5 +24,7 @@ export default {
 </script>
 
 <style>
-
+.el-main{
+  padding: 0px;
+}
 </style>
