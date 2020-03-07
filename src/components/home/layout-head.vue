@@ -40,7 +40,7 @@ export default {
       if (command === 'info') {
         alert('你点击了个人信息')
       } else if (command === 'address') {
-        window.location.href = 'https://www.baidu.com'
+        window.location.href = 'https://github.com/ZhangyuGHub/94-heimatoutiaopc'
       } else {
         window.localStorage.removeItem('user-token')
         this.$router.push('/login')
