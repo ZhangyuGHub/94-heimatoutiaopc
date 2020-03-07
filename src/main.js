@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'// 引入路由模块
+import '@/permission/index.js' // 引入权限模块
 import ElementUI from 'element-ui'
 import axios from 'axios'// 引入axios
 import 'element-ui/lib/theme-chalk/index.css'

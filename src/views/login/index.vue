@@ -101,16 +101,17 @@ export default {
   background-color: aliceblue;
   &:before {
      content: '123';
+     opacity: 0.9;
      width: 100%;
      height: 100%;
      position: absolute;
-     background-image: url('../../assets/img/back.jpg');
+     background-image: url('../../assets/img/bj.gif');
      filter: blur(5px);
       background-size: cover;
 
   }
   .login-card {
-    background:white;
+opacity: 0.8;
     z-index: 2;
     width:440px;
     height: 340px;
